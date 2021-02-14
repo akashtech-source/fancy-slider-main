@@ -51,14 +51,17 @@ const selectItem = (event, img) => {
 
   let item = sliders.indexOf(img);
   if (item === -1 ) {
+    element.classList.add('added');
     sliders.push(img);
     
   }
    else {
-      sliders.pop(img);
-      alert('Hey, Already added !')
+     delete sliders [item];
+    element.classList.remove('added');
+      // alert('Hey, Already added !')
   }
 }
+
 var timer
 const createSlider = () => {
   // check slider image length
@@ -139,3 +142,24 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+var sliderIndex = 0;
+var selectItems = (event, img) => {
+  var element = event.target;
+  toogleImg();
+  var item = sliders.indexOf(img);
+  if(item === -1){
+    element.classList.add('added');
+    sliders.push(img);
+  }
+  else{
+    element.classList.add('remove');
+    sliders.pop(img);
+  }
+}
+
+const toogleImg = () => {
+  const picture = document.getElementById("gallery");
+  picture.classList.remove('simg');
+  picture.classList.add('simg');
+}
